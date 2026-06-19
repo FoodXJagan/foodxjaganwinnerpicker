@@ -2,231 +2,226 @@
 <html lang="en">
 
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Food X Jagan Winner Picker</title>
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="style.css">
+    <title>
+        Food X Jagan | Under Development
+    </title>
 
-    <!-- Pliant Font -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Pliant:wght@300;400;500;600;700&display=swap"
-        rel="stylesheet">
+    <link rel="stylesheet"
+          href="style.css">
 
-    <!-- Orbitron Font -->
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;800&display=swap"
-        rel="stylesheet">
+          rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+          rel="stylesheet">
 
 </head>
 
 <body>
 
-    <!-- NAVBAR -->
-
-    <header class="navbar">
-
-        <div class="brand">
-
-            <div class="brand-title">
-                <span class="food">Food</span>
-                <span class="x">X</span>
-                <span class="jagan">Jagan</span>
-            </div>
-
-            <div class="tagline">
-                EAT • REVIEW • REPEAT
-            </div>
-
-        </div>
-
-        <div class="winner-title">
-            Lucky Winner<br>
-                <div class="winner-title-down">
-                    Picker
-                </div>
-            
-        </div>
-
-    </header>
-
-    <!-- MAIN CONTENT -->
-
     <div class="container">
 
-        <!-- INPUT SECTION -->
+        <!-- LOGO -->
 
-        <div class="stats-container">
+        <div class="logo">
 
-                <div class="stat-card">
+            <span class="food">
+                FOOD
+            </span>
 
-                    <div class="stat-icon">
-                        👥
+            <span class="x">
+                X
+            </span>
+
+            <span class="jagan">
+                JAGAN
+            </span>
+
+        </div>
+
+        <!-- MAIN CONTENT -->
+
+        <div class="content">
+
+            <!-- LEFT SIDE -->
+
+            <div class="left">
+
+                <h1>
+
+                    WEBSITE IS
+
+                    <span>
+                        UNDER DEVELOPMENT
+                    </span>
+
+                </h1>
+
+                <p>
+
+                    We're working hard to bring you an
+                    awesome experience.
+
+                    Stay tuned for exciting food reviews,
+                    giveaways and much more.
+
+                </p>
+
+                <!-- PROGRESS -->
+
+                <div class="progress-box">
+
+                    <div class="progress-bar">
+
                     </div>
 
-                    <div class="stat-info">
+                    <span>
+                        60%
+                    </span>
 
-                        <h3 id="participantStat">
-                            0
+                </div>
+
+                <!-- NOTICE -->
+
+                <div class="notice">
+
+                    <div class="icon">
+                        🛠
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            BUILDING SOMETHING AMAZING!
                         </h3>
 
-                        <p>Total Participants</p>
+                        <p>
+                            Thank you for your patience.
+                        </p>
 
                     </div>
 
-            </div>
-
-            <div class="stat-card">
-
-                <div class="stat-icon">
-                    🏆
                 </div>
 
-                <div class="stat-info">
+            </div>
 
-                    <h3 id="winnerStat">
-                     0
+            <!-- RIGHT SIDE -->
+
+            <div class="right">
+
+                <div class="sign-board">
+
+                    UNDER
+                    <br>
+                    CONSTRUCTION
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- BOTTOM CARD -->
+
+        <div class="bottom-card">
+
+            <!-- COMING SOON -->
+
+            <div class="coming">
+
+                <div class="emoji">
+                    📅
+                </div>
+
+                <div>
+
+                    <h3>
+                        COMING SOON!
                     </h3>
 
-                    <p>Winners Picked</p>
+                    <p>
+
+                        Something amazing is on the way.
+
+                    </p>
+
+                    <span>
+
+                        We'll be back soon!
+
+                    </span>
 
                 </div>
 
             </div>
 
-        </div>
+            <div class="divider">
 
+            </div>
 
-    <div class="card">
+            <!-- COUNTDOWN -->
 
-            <h2>👤 Add Usernames</h2>
-            <p class="section-desc">
-                Enter one username per line
-            </p>
+            <div class="countdown">
 
-            <textarea
-                id="userInput"
-                spellcheck="false"
-                autocomplete="off"
-                autocorrect="off"
-                autocapitalize="off"
-                placeholder="Paste usernames here..."
-            ></textarea>
+                <h3>
+                    LAUNCHING IN
+                </h3>
 
-            <div class="button-group">
+                <div id="timer">
 
-                <button id="submitBtn">
-                    📤 Submit
-                </button>
+                    Loading...
 
-                <button id="clearBtn">
-                    🗑 Clear All
-                </button>
+                </div>
+
+            </div>
+
+            <div class="divider">
+
+            </div>
+
+            <!-- INSTAGRAM -->
+
+            <div class="instagram">
+
+                <h3>
+                    STAY CONNECTED WITH US
+                </h3>
+
+                <div class="insta-icon">
+
+                    📷
+
+                </div>
+
+                <p>
+
+                    @foodxjagan
+
+                </p>
 
             </div>
 
         </div>
 
-        <!-- PARTICIPANTS SECTION -->
-
-        <div class="card">
-
-            <h2>
-                Participants:
-                <span id="participantCount">0</span>
-            </h2>
-
-            <ul id="participantList"></ul>
-
-        </div>
-
-        <!-- WINNER SETTINGS -->
-
-        <div class="card">
-
-            <h2>Winner Settings</h2>
-
-            <label for="winnerCount">
-                Number of Winners:
-            </label>
-
-            <input
-                type="number"
-                id="winnerCount"
-                min="1"
-                value="3"
-            >
-
-            <button id="pickWinnerBtn" class="pick-btn">
-                🎲 Pick Winners
-            </button>
-
-        </div>
-
-        <!-- WINNERS SECTION -->
-
-        <div class="card">
-
-            <h2>🏆 Winners</h2>
-
-            <ul id="winnerList"></ul>
-
-        </div>
-
-</div>
+    </div>
 
     <!-- FOOTER -->
 
     <footer class="footer">
 
-        <div class="footer-center">
-                © 2026 Food X Jagan Lucky Winner Picker. All Rights Reserved.
-        </div>
+        © <span id="year"></span>
 
-        <div class="footer-right">
-                 Developed and Managed by
-            <strong>Kalyan</strong> 
-        </div>
+        Food X Jagan.
+
+        All Rights Reserved.
 
     </footer>
-
-    <!-- WINNER POPUP -->
-
-    <div id="winnerPopup" class="winner-popup-overlay">
-
-        <div id="confettiContainer"></div>
-
-        <div class="winner-popup-card">
-
-            <button id="closePopupBtn" class="popup-close">
-                ✕
-            </button>
-
-            <div class="popup-icon">
-                🎁
-            </div>
-
-            <h2 class="popup-title">
-                🎉 Congratulations! 🎉
-            </h2>
-
-            <p class="popup-subtitle">
-                We have our Winners!
-            </p>
-
-            <div id="popupWinnerList">
-
-        </div>
-
-            <div class="popup-footer">
-                Thanks for participating 💛
-            </div>
-
-    </div>
-
-</div>
-
 
     <script src="script.js"></script>
 
