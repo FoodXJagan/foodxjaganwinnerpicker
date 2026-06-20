@@ -2,124 +2,95 @@
 <html lang="en">
 
 <head>
-
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+    <title>Food X Jagan Winner Picker</title>
 
-    <title>
-        Food X Jagan | Under Development
-    </title>
+    <link rel="stylesheet" href="style.css">
 
-    <link rel="stylesheet"
-          href="style.css">
+    <!-- Pliant Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pliant:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
 
+    <!-- Orbitron Font -->
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;800&display=swap"
-          rel="stylesheet">
+        rel="stylesheet">
 
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
-          rel="stylesheet">
 
 </head>
 
 <body>
 
+    <!-- NAVBAR -->
+
+    <header class="navbar">
+
+        <div class="brand">
+
+            <div class="brand-title">
+                <span class="food">Food</span>
+                <span class="x">X</span>
+                <span class="jagan">Jagan</span>
+            </div>
+
+            <div class="tagline">
+                EAT • REVIEW • REPEAT
+            </div>
+
+        </div>
+
+        <div class="winner-title">
+            Lucky Winner<br>
+                <div class="winner-title-down">
+                    Picker
+                </div>
+            
+        </div>
+
+    </header>
+
+    <!-- MAIN CONTENT -->
+
     <div class="container">
 
-        <!-- LOGO -->
+        <!-- INPUT SECTION -->
 
-        <div class="logo">
+        <div class="stats-container">
 
-            <span class="food">
-                FOOD
-            </span>
+                <div class="stat-card">
 
-            <span class="x">
-                X
-            </span>
-
-            <span class="jagan">
-                JAGAN
-            </span>
-
-        </div>
-
-        <!-- MAIN CONTENT -->
-
-        <div class="content">
-
-            <!-- LEFT SIDE -->
-
-            <div class="left">
-
-                <h1>
-
-                    WEBSITE IS
-
-                    <span>
-                        UNDER DEVELOPMENT
-                    </span>
-
-                </h1>
-
-                <p>
-
-                    We're working hard to bring you an
-                    awesome experience.
-
-                    Stay tuned for exciting food reviews,
-                    giveaways and much more.
-
-                </p>
-
-                <!-- PROGRESS -->
-
-                <div class="progress-box">
-
-                    <div class="progress-bar">
-
+                    <div class="stat-icon">
+                        👥
                     </div>
 
-                    <span>
-                        60%
-                    </span>
+                    <div class="stat-info">
 
-                </div>
-
-                <!-- NOTICE -->
-
-                <div class="notice">
-
-                    <div class="icon">
-                        🛠
-                    </div>
-
-                    <div>
-
-                        <h3>
-                            BUILDING SOMETHING AMAZING!
+                        <h3 id="participantStat">
+                            0
                         </h3>
 
-                        <p>
-                            Thank you for your patience.
-                        </p>
+                        <p>Total Participants</p>
 
                     </div>
 
-                </div>
-
             </div>
 
-            <!-- RIGHT SIDE -->
+            <div class="stat-card">
 
-            <div class="right">
+                <div class="stat-icon">
+                    🏆
+                </div>
 
-                <div class="sign-board">
+                <div class="stat-info">
 
-                    UNDER
-                    <br>
-                    CONSTRUCTION
+                    <h3 id="winnerStat">
+                     0
+                    </h3>
+
+                    <p>Winners Picked</p>
 
                 </div>
 
@@ -127,70 +98,205 @@
 
         </div>
 
-        <!-- BOTTOM CARD -->
 
-        <div class="bottom-card">
+    <div class="card">
 
-            <!-- COMING SOON -->
+            <h2>👤 Add Usernames</h2>
+            <p class="section-desc">
+                Enter one username per line
+            </p>
 
-            <div class="coming">
+            <textarea
+                id="userInput"
+                spellcheck="false"
+                autocomplete="off"
+                autocorrect="off"
+                autocapitalize="off"
+                placeholder="Paste usernames here..."
+            ></textarea>
 
-                <div class="emoji">
-                    📅
+            <div class="button-group">
+
+                <button id="submitBtn">
+                    📤 Submit
+                </button>
+
+                <button id="clearBtn">
+                    🗑 Clear All
+                </button>
+
+            </div>
+
+        </div>
+
+        <!-- PARTICIPANTS SECTION -->
+
+        <div class="card">
+
+            <h2>
+                Participants:
+                <span id="participantCount">0</span>
+            </h2>
+
+            <ul id="participantList"></ul>
+
+        </div>
+
+        <!-- WINNER SETTINGS -->
+
+        <div class="card">
+
+            <h2>Winner Settings</h2>
+
+            <label for="winnerCount">
+                Number of Winners:
+            </label>
+
+            <input
+                type="number"
+                id="winnerCount"
+                min="1"
+                value="3"
+            >
+
+            <button id="pickWinnerBtn" class="pick-btn">
+                🎲 Pick Winners
+            </button>
+
+        </div>
+
+        <!-- WINNERS SECTION -->
+
+        <div class="card">
+
+            <h2>🏆 Winners</h2>
+
+            <ul id="winnerList"></ul>
+
+        </div>
+
+
+    </div>
+
+    
+
+
+    <!-- FOOTER -->
+
+    <footer class="footer">
+
+        <div class="footer-center">
+            © 2026 Food X Jagan Lucky Winner Picker. All Rights Reserved.
+        </div>
+
+        <div class="footer-right">
+            Developed and Managed by
+            <span id="developerBtn">
+                Kalyan
+            </span>
+        </div>
+
+    </footer>
+
+    <!-- WINNER POPUP -->
+
+    <div id="winnerPopup" class="winner-popup-overlay">
+
+            <div id="confettiContainer"></div>
+
+            <div class="winner-popup-card">
+
+                <button id="closePopupBtn" class="popup-close">
+                    ✕
+                </button>
+
+                <div class="popup-icon">
+                    🎁
                 </div>
 
-                <div>
+                <h2 class="popup-title">
+                    🎉 Congratulations! 🎉
+                </h2>
 
-                    <h3>
-                        COMING SOON!
-                    </h3>
+                <p class="popup-subtitle">
+                    We have our Winners!
+                </p>
 
-                    <p>
+                <div id="popupWinnerList">
 
-                        Something amazing is on the way.
+            </div>
 
-                    </p>
-
-                    <span>
-
-                        We'll be back soon!
-
-                    </span>
-
+                <div class="popup-footer">
+                    Thanks for participating 💛
                 </div>
 
-            </div>
+        </div>
 
-            <div class="divider">
+    </div>
 
-            </div>
+    <!-- DEVELOPER POPUP -->
 
-            <!-- COUNTDOWN -->
+    <div id="developerPopup" class="developer-overlay">
 
+    <div class="developer-card">
 
-            <div class="divider">
+        <button id="closeDeveloperPopup">
+            ✕
+        </button>
 
-            </div>
+        <div class="developer-image">
 
-            <!-- INSTAGRAM -->
+            <img
+                src="images/kalyan.jpg"
+                alt="Kalyan"
+            >
 
-            <div class="instagram">
+        </div>
+
+        <div class="developer-content">
+
+                <div class="developer-tag">
+                    About the Developer
+                </div>
+
+                <h1>
+                    Kalyan
+                </h1>
 
                 <h3>
-                    STAY CONNECTED WITH US
+                    Web Developer | Designer 
                 </h3>
-
-                <div class="insta-icon">
-
-                    📷
-
-                </div>
 
                 <p>
 
-                    @foodxjagan
+                    Hello! I'm Kalyan, the developer of the
+                    <strong>
+                        Food X Jagan Lucky Winner Picker
+                    </strong>.
 
                 </p>
+
+                <p>
+
+                    As a passionate web developer, I enjoy transforming ideas into elegant, functional, and impactful digital experiences that people love to use.
+
+                </p>
+
+                <p>
+                    Thank you for using this tool ! 💛
+                </p>
+
+                <div class="instagram-box">
+
+                    <span class="insta-icon">
+                        📷
+                    </span>
+
+                    <span>
+                        _.calyan._
+                    </span>
+
+                </div>
 
             </div>
 
@@ -198,19 +304,11 @@
 
     </div>
 
-    <!-- FOOTER -->
-
-    <footer class="footer">
-
-        © <span id="year"></span>
-
-        Food X Jagan.
-
-        All Rights Reserved.
-
-    </footer>
 
     <script src="script.js"></script>
+
+    
+
 
 </body>
 
