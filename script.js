@@ -1,119 +1,408 @@
 // =========================
-// AUTO YEAR
+// DATA STORAGE
 // =========================
 
-document.getElementById("year").textContent =
-new Date().getFullYear();
+let participants = [];
+let latestWinners = [];
 
 
 // =========================
-// PROGRESS BAR ANIMATION
+// ELEMENTS
 // =========================
 
-window.addEventListener("load", () => {
+const userInput = document.getElementById("userInput");
+const submitBtn = document.getElementById("submitBtn");
+const clearBtn = document.getElementById("clearBtn");
 
-    const progressBar =
-    document.querySelector(".progress-bar");
+const participantCount =
+document.getElementById("participantCount");
 
-    progressBar.style.width = "0%";
+const participantList =
+document.getElementById("participantList");
 
-    setTimeout(() => {
+const winnerCount =
+document.getElementById("winnerCount");
 
-        progressBar.style.width = "60%";
+const pickWinnerBtn =
+document.getElementById("pickWinnerBtn");
 
-    }, 500);
+const winnerList =
+document.getElementById("winnerList");
+
+
+// =========================
+// SUBMIT USERS
+// =========================
+
+submitBtn.addEventListener("click", () => {
+
+    const rawUsers = userInput.value.trim();
+
+    if(rawUsers === ""){
+
+        alert("Please enter usernames");
+
+        return;
+    }
+
+    participants = rawUsers
+        .split("\n")
+        .map(user => user.trim())
+        .filter(user => user !== "");
+
+    participants = [...new Set(participants)];
+
+    displayParticipants();
 
 });
 
 
 // =========================
-// COUNTDOWN TIMER
+// DISPLAY PARTICIPANTS
 // =========================
 
-// Set your launch date here
+function displayParticipants(){
 
+    participantList.innerHTML = "";
 
+    participantCount.textContent =
+    participants.length;
+
+    // Update top stats card
+    document.getElementById("participantStat").textContent =
+    participants.length;
+
+    participants.forEach((user,index)=>{
+
+        const li =
+        document.createElement("li");
+
+        li.textContent =
+        `${index + 1}. ${user}`;
+
+        participantList.appendChild(li);
+
+    });
+
+}
+
+// =========================
+// PICK WINNERS
+// =========================
+
+pickWinnerBtn.addEventListener("click", () => {
+
+    if(participants.length === 0){
+
+        alert("Please submit users first");
+
+        return;
+    }
+
+    const totalWinners =
+    parseInt(winnerCount.value);
+
+    if(
+        isNaN(totalWinners) ||
+        totalWinners < 1
+    ){
+        alert("Enter a valid winner count");
+        return;
+    }
+
+    if(totalWinners > participants.length){
+
+        alert(
+            "Winner count exceeds participant count"
+        );
+
+        return;
+    }
+
+    // Create a copy
+
+    const shuffled = [...participants];
+
+// Triple shuffle for better randomness perception
+
+    for(let round = 0; round < 3; round++){
+
+        for(
+            let i = shuffled.length - 1;
+            i > 0;
+            i--
+        ){
+
+            const j =
+            Math.floor(
+                Math.random() * (i + 1)
+        );
+
+            [shuffled[i], shuffled[j]] =
+            [shuffled[j], shuffled[i]];
+        }
+    }
+
+// Pick winners
+
+const winners = [];
+
+while(
+    winners.length < totalWinners
+){
+
+    const randomIndex =
+    Math.floor(
+        Math.random() * shuffled.length
+    );
+
+    winners.push(
+        shuffled[randomIndex]
+    );
+
+    shuffled.splice(
+        randomIndex,
+        1
+    );
+
+}
+
+/* DISPLAY RESULTS */
+
+displayWinners(winners);
+
+showWinnerPopup(winners);
+
+});
 
 
 // =========================
-// FADE-IN ANIMATION
+// DISPLAY WINNERS
 // =========================
 
-const elements =
-document.querySelectorAll(
-    ".logo, .left, .right, .bottom-card"
+function displayWinners(winners){
+
+    winnerList.innerHTML = "";
+
+    // Update top winner stats card
+    document.getElementById("winnerStat").textContent =
+    winners.length;
+
+    winners.forEach((winner,index)=>{
+
+        const li =
+        document.createElement("li");
+
+        li.innerHTML =
+        `🏆 Winner ${index + 1}: <strong>${winner}</strong>`;
+
+        winnerList.appendChild(li);
+
+    });
+
+    latestWinners = winners;
+
+}
+
+function showWinnerPopup(winners){
+
+    const popup =
+    document.getElementById("winnerPopup");
+
+    const popupWinnerList =
+    document.getElementById("popupWinnerList");
+
+    popupWinnerList.innerHTML = "";
+
+    winners.forEach((winner,index)=>{
+
+    setTimeout(() => {
+
+        const winnerCard =
+        document.createElement("div");
+
+        winnerCard.className =
+        "popup-winner reveal";
+
+        winnerCard.innerHTML = `
+
+            <div class="popup-rank">
+                ${index + 1}
+            </div>
+
+            <div class="popup-name">
+                ${winner}
+            </div>
+
+        `;
+
+        popupWinnerList.appendChild(
+            winnerCard
+        );
+
+    }, index * 800);
+
+    });
+
+    popup.style.display = "flex";
+    launchConfetti();
+    setTimeout(() => {
+
+    closeWinnerPopup();
+
+    }, 10000);
+
+}
+
+function closeWinnerPopup(){
+
+    const popup =
+    document.getElementById("winnerPopup");
+
+    popup.style.display = "none";
+
+}
+
+document
+.getElementById("closePopupBtn")
+.addEventListener("click", () => {
+
+    closeWinnerPopup();
+
+});
+
+const popupOverlay =
+document.getElementById("winnerPopup");
+
+popupOverlay.addEventListener("click", (e) => {
+
+    if(
+        e.target === popupOverlay
+    ){
+
+        closeWinnerPopup();
+
+    }
+
+});
+
+document
+.querySelector(".winner-popup-card")
+.addEventListener("click", (e) => {
+
+    e.stopPropagation();
+
+});
+
+
+// =========================
+// CLEAR ALL
+// =========================
+
+clearBtn.addEventListener("click", () => {
+
+    userInput.value = "";
+
+    document.getElementById("participantStat").textContent = "0";
+
+    document.getElementById("winnerStat").textContent = "0";
+
+    participants = [];
+
+    participantCount.textContent = "0";
+
+    participantList.innerHTML = "";
+
+    winnerList.innerHTML = "";
+
+    winnerCount.value = 3;
+
+});
+
+function launchConfetti(){
+
+    const container =
+    document.getElementById(
+        "confettiContainer"
+    );
+
+    container.innerHTML = "";
+
+    for(let i=0;i<120;i++){
+
+        const piece =
+        document.createElement("div");
+
+        piece.className =
+        "confetti";
+
+        piece.style.left =
+        Math.random()*100 + "%";
+
+        piece.style.animationDelay =
+        Math.random()*2 + "s";
+
+        piece.style.opacity =
+        Math.random();
+
+        container.appendChild(piece);
+
+    }
+
+}
+
+// =========================
+// DEVELOPER POPUP
+// =========================
+
+const developerBtn =
+document.getElementById(
+    "developerBtn"
 );
 
-elements.forEach((element, index) => {
+const developerPopup =
+document.getElementById(
+    "developerPopup"
+);
 
-    element.style.opacity = "0";
+const closeDeveloperPopup =
+document.getElementById(
+    "closeDeveloperPopup"
+);
 
-    element.style.transform =
-    "translateY(30px)";
+developerBtn.addEventListener(
+    "click",
+    () => {
 
-    setTimeout(() => {
-
-        element.style.transition =
-        "all 1s ease";
-
-        element.style.opacity = "1";
-
-        element.style.transform =
-        "translateY(0)";
-
-    }, index * 300);
-
-});
-
-
-// =========================
-// TITLE ANIMATION
-// =========================
-
-const titles = [
-
-    "Food X Jagan | Coming Soon",
-
-    "Food X Jagan | Under Development",
-
-    "Food X Jagan | Launching Soon 🚀"
-
-];
-
-let titleIndex = 0;
-
-setInterval(() => {
-
-    document.title =
-    titles[titleIndex];
-
-    titleIndex++;
-
-    if(titleIndex >= titles.length){
-
-        titleIndex = 0;
+        developerPopup.style.display =
+        "flex";
 
     }
+);
 
-}, 3000);
+closeDeveloperPopup.addEventListener(
+    "click",
+    () => {
 
-
-// =========================
-// BLINKING COMING SOON
-// =========================
-
-const comingSoon =
-document.querySelector(".coming span");
-
-setInterval(() => {
-
-    if(comingSoon){
-
-        comingSoon.style.opacity =
-        comingSoon.style.opacity === "0.5"
-        ? "1"
-        : "0.5";
+        developerPopup.style.display =
+        "none";
 
     }
+);
 
-}, 700);
+developerPopup.addEventListener(
+    "click",
+    (e) => {
+
+        if(
+            e.target === developerPopup
+        ){
+
+            developerPopup.style.display =
+            "none";
+
+        }
+
+    }
+);
+
